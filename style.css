@@ -1,0 +1,89 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+/* sign-up-page */
+
+
+.form-title h2{
+    text-align: center;
+    padding: 50px 0px;
+}
+
+/* Doctor interphase */
+.emmergency-patient{}
+.em-pat-title, .pat-data-title h2{
+    padding: 30px 0px; 
+}
+.doctor-interphase table tbody tr td a{
+    text-decoration: none;
+    color: #fff;
+    background-color: rgb(18, 143, 216);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+
+/* patient interphase */
+.patient-interphase{
+    padding: 20px 0px;
+}
+.emergency-call, .opload-voice-file, .regular-report h2{
+    padding: 10px 0px;
+}
+.emergency-call button{
+    margin: 10px 0px;
+}
+.line{
+    height: 1px;
+    width: 100%;
+    background-color: #000;
+    margin: 20px 0px;
+}
+
+.message-field{
+    border: 2px solid #dedede;
+    background-color: #faf5f5;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.chat-text h3{
+    padding: 10px 0px;
+}
+.container-field {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  .darker {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+  
+  .container-field::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .msg-send-field textarea{
+     width: 100%;
+     margin-bottom: 10px;
+     margin-top: 20px;
+  }
+
+
+
+  .patient-information h5{
+      display: inline-block;
+  }
+  .patient-information p{
+    
+}
+  
+ 
