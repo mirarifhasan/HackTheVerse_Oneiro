@@ -78,12 +78,14 @@ body{
   }
 
 
+/* details interphase */
 
-  .patient-information h5{
-      display: inline-block;
+
+  .patient-information span{
+      display: flex;
   }
-  .patient-information p{
-    
+  .patient-information h5{
+   padding-right: 10px;
 }
   
  
