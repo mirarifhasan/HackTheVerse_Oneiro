@@ -1,10 +1,54 @@
+<?php
+
+include 'zzz-dbConnect.php';
+session_start();
+
+$_SESSION["name"] = '';
+$_SESSION['age'] = '';
+$_SESSION["phone"] = '';
+$_SESSION['address'] = '';
+$_SESSION['city'] = '';
+$_SESSION["gender"] = '';
+$_SESSION["password"] = '';
+$_SESSION["c_password"] = '';
+$error = '';
+
+if (isset($_POST["submit"])) {
+  $_SESSION['phone'] = trim($_POST["phone"]);
+  $_SESSION['password'] = trim($_POST["password"]);
+
+  $sql = "select * from patient where phone='" . $_SESSION['phone'] . "' and password='".$_SESSION['password']."'";
+
+  $result = mysqli_query($link, $sql);
+  $noOfData = mysqli_num_rows($result);
+  $row = mysqli_fetch_assoc($result);
+
+  if ($noOfData == 0) {
+    $error = 'Wrong phone/password';
+    echo "<script type='text/javascript'>alert('$error');</script>";
+  } else {
+    $row = mysqli_fetch_assoc($result);
+    $_SESSION['patient_id'] = $row['patient_id'];
+    $_SESSION['name'] = $row['name'];
+    $_SESSION['age'] = $row['age'];
+    $_SESSION['address'] = $row['address'];
+    $_SESSION['city'] = $row['city'];
+    $_SESSION['gender'] = $row['gender'];
+    header('Location: patient');
+  }
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signup | Oneiro</title>
+  <title>Login | Oneiro</title>
 
   <!-- CSS link -->
   <link rel="stylesheet" href="style.css">
@@ -16,32 +60,33 @@
 <body>
 
   <div class="sign-up-form">
-  <div class="menu-bar">
-     <ul class="nav justify-content-end">
-       <li><a href="signup.php">Signup</a></li>
-       <li><a href="login.php">Login</a></li>
-     </ul>
+    <div class="menu-bar">
+      <ul class="nav justify-content-end">
+        <li><a href="signup.php">Signup</a></li>
+        <li><a href="login.php">Login</a></li>
+      </ul>
     </div>
+
     <div class="container">
       <div class="row">
         <div class="col-md-6 offset-md-3">
-        <div class="form-title">
-        <h2>Log In</h2>
-      </div>
-        <form>
-  <fieldset >
-    <div class="form-group">
-      <label for="disabledTextInput">Phone Number</label>
-      <input type="tel" id="disabledTextInput" class="form-control" placeholder="">
-    </div>
-    <div class="form-group">
-      <label for="disabledTextInput">Password</label>
-      <input type="text" id="disabledTextInput" class="form-control" placeholder="">
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-  </fieldset>
-</form>
-    
+          <div class="form-title">
+            <h2>Patient Login Portal</h2>
+          </div>
+          <form method="post">
+            <fieldset>
+              <div class="form-group">
+                <label for="disabledTextInput">Phone Number</label>
+                <input type="tel" name="phone" value="<?php echo $_SESSION['name'];?>" id="disabledTextInput" class="form-control" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="disabledTextInput">Password</label>
+                <input type="text" name="password" value="<?php echo $_SESSION['password'];?>" id="disabledTextInput" class="form-control" placeholder="">
+              </div>
+              <button type="submit" name="submit" class="btn btn-primary">Login</button>
+            </fieldset>
+          </form>
+
         </div>
       </div>
     </div>

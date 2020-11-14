@@ -24,17 +24,55 @@ session_start();
 </head>
 
 <body>
-
-
   <div class="doctor-interphase">
+
     <div class="menu-bar">
       <ul class="nav justify-content-end">
         <li><a href="signup.php">Signup</a></li>
         <li><a href="login.php">Login</a></li>
       </ul>
     </div>
+
     <div class="container">
       <div class="row">
+
+        <div class="col-md-12">
+          <div class="emergency-output-title">
+            <h2 class="bg-danger">SOS Patients</h2>
+          </div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Bed No.</th>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Details</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td >Mark</td>
+                <td><a href="#">Details</a></td>
+
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td><a href="#">Details</a></td>
+
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td><a href="#">Details</a></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
         <div class="col-md-6">
           <div class="emmergency-patient">
             <div class="em-pat-title">
@@ -77,6 +115,8 @@ session_start();
             </table>
           </div>
         </div>
+
+
         <div class="col-md-6">
           <div class="patients-data">
             <div class="pat-data-title">
@@ -112,19 +152,6 @@ session_start();
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   <!-- JS link -->
