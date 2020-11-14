@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2020 at 02:28 PM
+-- Generation Time: Nov 14, 2020 at 03:03 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -86,7 +86,9 @@ CREATE TABLE `chat` (
 INSERT INTO `chat` (`chat_id`, `sender`, `receiver`, `text`) VALUES
 (1, 1, 0, 'Hello Doctor. I am filling unwell.'),
 (2, 0, 1, 'Can you explain a bit more, please.'),
-(3, 0, 1, 'I am sending a nurse right now');
+(3, 0, 1, 'I am sending a nurse right now'),
+(6, 1, 0, 'Thanks'),
+(7, 0, 1, 'welcome');
 
 -- --------------------------------------------------------
 
@@ -227,7 +229,7 @@ ALTER TABLE `bp`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `heartrate`
