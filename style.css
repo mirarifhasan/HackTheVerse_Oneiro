@@ -1,6 +1,6 @@
-body{
-    margin: 0;
-    padding: 0;
+*{
+    margin: 0px;
+    padding: 0px;
 }
 
 /* sign-up-page */
@@ -105,4 +105,22 @@ form select option {
 form select option:hover {
     background-color: #32B5F3 !important;
     color: #fff !important;
+}
+
+
+
+.menu-bar{
+    background-color: gray;
+    padding: 25px 0px;
+}
+.menu-bar ul li a{
+    text-decoration: none;
+    color: #fff;
+    background-color: rgb(18, 143, 216);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+.menu-bar ul{
+    margin-right: 30px;
 }
