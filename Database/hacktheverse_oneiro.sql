@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2020 at 03:03 PM
+-- Generation Time: Nov 14, 2020 at 08:56 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -132,17 +132,19 @@ CREATE TABLE `patient` (
   `phone` varchar(15) NOT NULL,
   `address` varchar(30) NOT NULL,
   `city` varchar(15) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(20) NOT NULL,
+  `lng` decimal(9,6) NOT NULL,
+  `lat` decimal(9,6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`patient_id`, `name`, `gender`, `age`, `phone`, `address`, `city`, `password`) VALUES
-(1, 'Ishan', 'Male', 22, '1', '56, Bashabo', 'Dhaka', '1'),
-(2, 'Shihab', 'Male', 21, '01534312345', '101, Mugdapara', 'Dhaka', '123456'),
-(3, 'Tanbir', 'Male', 23, '01564978654', '88, Khilgaon', 'Dhaka', '123456');
+INSERT INTO `patient` (`patient_id`, `name`, `gender`, `age`, `phone`, `address`, `city`, `password`, `lng`, `lat`) VALUES
+(1, 'Ishan', 'Male', 22, '1', '56, Bashabo', 'Dhaka', '1', '90.426679', '23.736994'),
+(2, 'Shihab', 'Male', 21, '01534312345', '101, Mugdapara', 'Dhaka', '123456', '90.430292', '23.741549'),
+(3, 'Tanbir', 'Male', 23, '01564978654', '88, Khilgaon', 'Dhaka', '123456', '90.440000', '23.750000');
 
 -- --------------------------------------------------------
 
@@ -161,7 +163,11 @@ CREATE TABLE `sos` (
 --
 
 INSERT INTO `sos` (`sos_id`, `patient_id`, `task`) VALUES
-(1, 1, 'Emergency SOS Call');
+(1, 1, 'Emergency SOS Call'),
+(2, 1, 'Emergency SOS Call'),
+(3, 1, 'Emergency SOS Call'),
+(4, 1, 'Emergency SOS Call'),
+(5, 1, 'Emergency SOS Call');
 
 --
 -- Indexes for dumped tables
@@ -253,7 +259,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `sos`
 --
 ALTER TABLE `sos`
-  MODIFY `sos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
