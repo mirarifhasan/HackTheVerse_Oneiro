@@ -1,22 +1,24 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
 
 /* sign-up-page */
 
-
-.form-title h2{
+.form-title h2 {
     text-align: center;
     padding: 50px 0px;
 }
 
 /* Doctor interphase */
-.emmergency-patient{}
-.em-pat-title, .pat-data-title h2{
-    padding: 30px 0px; 
+
+.emmergency-patient {}
+
+.em-pat-title, .pat-data-title h2 {
+    padding: 30px 0px;
 }
-.doctor-interphase table tbody tr td a{
+
+.doctor-interphase table tbody tr td a {
     text-decoration: none;
     color: #fff;
     background-color: rgb(18, 143, 216);
@@ -24,67 +26,69 @@
     border-radius: 5px;
 }
 
-
-
 /* patient interphase */
-.emergency-call, .opload-voice-file, .regular-report h2{
+
+.emergency-call, .opload-voice-file, .regular-report h2 {
     padding: 10px 0px;
 }
-.emergency-call button{
+
+.emergency-call button {
     margin: 10px 0px;
 }
-.line{
+
+.line {
     height: 1px;
     width: 100%;
     background-color: #000;
     margin: 20px 0px;
 }
 
-.message-field{
+.message-field {
     border: 2px solid #dedede;
     background-color: #faf5f5;
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
 }
-.chat-text h3{
+
+.chat-text h3 {
     padding: 10px 0px;
 }
+
 .container-field {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
-  }
+}
 
-  .darker {
+.darker {
     border-color: #ccc;
     background-color: #ddd;
-  }
-  
-  .container-field::after {
+}
+
+.container-field::after {
     content: "";
     clear: both;
     display: table;
-  }
-  .msg-send-field textarea{
-     width: 100%;
-     margin-bottom: 10px;
-     margin-top: 20px;
-  }
+}
 
+.msg-send-field textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
 
 /* details interphase */
 
-
-  .patient-information span{
-      display: flex;
-  }
-  .patient-information h5{
-   padding-right: 10px;
+.patient-information span {
+    display: flex;
 }
 
+.patient-information h5 {
+    padding-right: 10px;
+}
 
 form select {
     background-color: #32B5F3 !important;
@@ -104,14 +108,13 @@ form select option:hover {
     color: #fff !important;
 }
 
-
-
-.menu-bar{
+.menu-bar {
     background-color: gray;
     padding: 25px 0px;
     margin-bottom: 20px;
 }
-.menu-bar ul li a{
+
+.menu-bar ul li a {
     text-decoration: none;
     color: #fff;
     background-color: rgb(18, 143, 216);
@@ -119,6 +122,7 @@ form select option:hover {
     border-radius: 5px;
     margin-right: 20px;
 }
-.menu-bar ul{
+
+.menu-bar ul {
     margin-right: 30px;
 }

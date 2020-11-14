@@ -113,9 +113,11 @@ if (isset($_POST["soscall"])) {
           $sql = 'select * from audio where patient_id=' . $_SESSION['patient_id'];
           $res1 = mysqli_query($link, $sql);
           while ($row1 = mysqli_fetch_assoc($res1)) { ?>
-            <audio src="<?php echo $row1['path'] ?>" controls>
-              Your browser does not support the audio element.
-            </audio>
+            <div class="col-md-12">
+              <audio src="<?php echo $row1['path'] ?>" controls>
+                Your browser does not support the audio element.
+              </audio>
+            </div>
           <?php } ?>
 
           <div class="line"></div>

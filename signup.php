@@ -67,70 +67,69 @@ if (isset($_POST["signup"])) {
 <body>
 
   <div class="sign-up-form">
-  <div class="menu-bar">
-     <ul class="nav justify-content-end">
-       <li><a href="signup.php">Signup</a></li>
-       <li><a href="login.php">Login</a></li>
-     </ul>
+    <div class="menu-bar">
+      <ul class="nav justify-content-end">
+        <li><a href="login.php">Login</a></li>
+      </ul>
     </div>
     <div class="container">
       <div class="row">
         <div class="col-md-10 offset-md-1">
-        <div class="form-title">
-        <h2>Patient Information</h2>
-      </div>
-      <form method="POST">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputname4">Name</label>
-            <input type="text" name="name" value="<?php echo $_SESSION['name']; ?>" class="form-control" id="inputname4" required>
+          <div class="form-title">
+            <h2>New Patient Registration</h2>
           </div>
-          <div class="form-group col-md-6">
-            <label for="inputnumber4">Age</label>
-            <input type="number" name="age" value="<?php echo $_SESSION['age']; ?>" class="form-control" id="inputnumber4" required>
-          </div>
-        </div>
+          <form method="POST">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputname4">Name</label>
+                <input type="text" name="name" value="<?php echo $_SESSION['name']; ?>" class="form-control" id="inputname4" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputnumber4">Age</label>
+                <input type="number" name="age" value="<?php echo $_SESSION['age']; ?>" class="form-control" id="inputnumber4" required>
+              </div>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity" style="margin-right: 20px;">Genger</label>
-            <select name="gender" style="width: 100%;" required>
-              <option value="" disabled selected>Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputphone">Phone Number</label>
-            <input type="tel" name="phone" value="<?php echo $_SESSION['phone']; ?>" class="form-control" id="inputphone" required>
-          </div>
-        </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputCity" style="margin-right: 20px;">Genger</label>
+                <select name="gender" style="width: 100%;" required>
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputphone">Phone Number</label>
+                <input type="tel" name="phone" value="<?php echo $_SESSION['phone']; ?>" class="form-control" id="inputphone" required>
+              </div>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputAddress">Address</label>
-            <input type="text" name="address" value="<?php echo $_SESSION['address']; ?>" class="form-control" id="inputAddress" placeholder="" required>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" name="city" value="<?php echo $_SESSION['city']; ?>" class="form-control" id="inputCity" required>
-          </div>
-        </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputAddress">Address</label>
+                <input type="text" name="address" value="<?php echo $_SESSION['address']; ?>" class="form-control" id="inputAddress" placeholder="" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" name="city" value="<?php echo $_SESSION['city']; ?>" class="form-control" id="inputCity" required>
+              </div>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputAddress">Password</label>
-            <input type="text" name="password" value="<?php echo $_SESSION['password']; ?>" class="form-control" id="inputAddress" placeholder="" required>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputCity">Confirm Password</label>
-            <input type="text" name="c_password" value="<?php echo $_SESSION['c_password']; ?>" class="form-control" id="inputCity" required>
-          </div>
-        </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputAddress">Password</label>
+                <input type="password" name="password" value="<?php echo $_SESSION['password']; ?>" class="form-control" id="inputAddress" placeholder="" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputCity">Confirm Password</label>
+                <input type="password" name="c_password" value="<?php echo $_SESSION['c_password']; ?>" class="form-control" id="inputCity" required>
+              </div>
+            </div>
 
-        <button type="submit" name="signup" class="btn btn-primary">Sign up</button>
-      </form>
+            <button type="submit" name="signup" class="btn btn-primary">Sign up</button>
+          </form>
         </div>
       </div>
     </div>

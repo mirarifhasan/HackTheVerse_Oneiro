@@ -2,24 +2,21 @@
 
 include 'zzz-dbConnect.php';
 session_start();
+
+if (!isset($_SESSION['doctor_id'])) {
+  header('Location: doctor-login');
+}
+
 date_default_timezone_set("Asia/Dhaka");
 
-
-
 if (isset($_GET['pid'])) {
-  $_SESSION["pid"] = $_GET['ID'];
-  $pid = $_GET['ID'];
+  $_SESSION["pid"] = $_GET['pid'];
+  $pid = $_GET['pid'];
   $sql = "select * from patient where patient_id = '{$pid}'";
   $run = mysqli_query($link, $sql);
   $row = mysqli_fetch_assoc($run);
 }
-
-
-
-echo date("Y-m-d h:i:sa");
-
-
-// die()
+// echo date("Y-m-d h:i:sa");
 ?>
 
 <!DOCTYPE html>
@@ -40,59 +37,50 @@ echo date("Y-m-d h:i:sa");
 <body>
 
   <div class="patient-interphase">
+
     <div class="menu-bar">
       <ul class="nav justify-content-end">
-        <li><a href="signup.php">Signup</a></li>
-        <li><a href="login.php">Login</a></li>
+        <p style="padding-right: 20px; color:white"><?php echo $_SESSION['doctor_name']; ?></p>
+        <li><a href="logout">Logout</a></li>
       </ul>
     </div>
+
     <div class="container">
       <div class="row">
         <div class="col-md-8">
           <div class="patient-information">
             <span>
-              <h5>Name:</h5>
-              <p><?php echo $row['name']; ?></p>
+              <h5>Name: <?php echo $row['name']; ?></h5>
             </span>
             <span>
-              <h5>Age:</h5>
-              <p><?php echo $$row['age']; ?></p>
+              <h5>Age: <?php echo $row['age']; ?></h5>
             </span>
             <span>
-              <h5>Gender:</h5>
-              <p><?php echo $row['gender']; ?></p>
+              <h5>Gender: <?php echo $row['gender']; ?></h5>
             </span>
           </div>
           <div class="line"></div>
           <div class="regular-report">
-            <h2>Report</h2>
+            <h2>Report [BP]</h2>
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">Date & Time</th>
-                  <th scope="col">Blood Pressure</th>
-                  <th scope="col">Measure</th>
+                  <th scope="col">Date Time</th>
+                  <th scope="col">High</th>
+                  <th scope="col">Low</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>11</td>
-
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>11</td>
-
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>11</td>
-
-                </tr>
+                <?php
+                $sql = 'select * from bp where patient_id=' . $_SESSION['pid'];
+                $res1 = mysqli_query($link, $sql);
+                while ($row1 = mysqli_fetch_assoc($res1)) { ?>
+                  <tr>
+                    <th scope="row"><?php echo $row1['datetime'] ?></th>
+                    <td><?php echo $row1['high'] ?></td>
+                    <td><?php echo $row1['low'] ?></td>
+                  </tr>
+                <?php } ?>
               </tbody>
             </table>
           </div>

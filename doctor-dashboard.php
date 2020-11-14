@@ -3,6 +3,9 @@
 include 'zzz-dbConnect.php';
 session_start();
 
+if (!isset($_SESSION['doctor_id'])) {
+  header('Location: doctor-login');
+}
 
 
 ?>
@@ -28,8 +31,8 @@ session_start();
 
     <div class="menu-bar">
       <ul class="nav justify-content-end">
-        <li><a href="signup.php">Signup</a></li>
-        <li><a href="login.php">Login</a></li>
+        <p style="padding-right: 20px; color:white"><?php echo $_SESSION['doctor_name'];?></p>
+        <li><a href="logout">Logout</a></li>
       </ul>
     </div>
 
@@ -38,36 +41,31 @@ session_start();
 
         <div class="col-md-12">
           <div class="emergency-output-title">
-            <h2 class="bg-danger">SOS Patients</h2>
+            <h2 class="bg-warning">SOS Patients</h2>
           </div>
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Bed No.</th>
+                <th scope="col">Sl.</th>
                 <th scope="col">Patient Name</th>
                 <th scope="col">Details</th>
-
+                <th scope="col">Profile</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td >Mark</td>
-                <td><a href="#">Details</a></td>
-
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td><a href="#">Details</a></td>
-
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td><a href="#">Details</a></td>
-
-              </tr>
+              <?php
+              $sql = 'SELECT patient.patient_id, patient.name, sos.task FROM `sos` join patient on sos.patient_id=patient.patient_id ';
+              $res1 = mysqli_query($link, $sql);
+              $noOfData = mysqli_num_rows($res1);
+              while ($row1 = mysqli_fetch_assoc($res1)) {
+              ?>
+                <tr>
+                  <th scope="row"><?php echo $row1['patient_id'] ?></th>
+                  <td><?php echo $row1['name'] ?></td>
+                  <td><?php echo $row1['task'] ?></td>
+                  <td><a href="patient-details?pid=<?php echo $row1['patient_id'] ?>">Details</a></td>
+                </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>
@@ -87,7 +85,6 @@ session_start();
                 </tr>
               </thead>
               <tbody>
-
                 <?php
                 $sql = 'select * from patient';
                 $res1 = mysqli_query($link, $sql);
