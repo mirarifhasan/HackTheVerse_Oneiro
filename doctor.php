@@ -15,8 +15,16 @@
  
     
 <div class="doctor-interphase">
+<div class="menu-bar">
+     <ul class="nav justify-content-end">
+       <li><a href="signup.php">Signup</a></li>
+       <li><a href="login.php">Login</a></li>
+     </ul>
+    </div>
     <div class="container">
-        <div class="emmergency-patient">
+       <div class="row">
+      <div class="col-md-6">
+      <div class="emmergency-patient">
             <div class="em-pat-title">
                 <h2>Emergency</h2>
             </div>
@@ -50,7 +58,9 @@
                   </tbody>
               </table>
         </div>
-        <div class="patients-data">
+      </div>
+      <div class="col-md-6">
+      <div class="patients-data">
             <div class="pat-data-title">
                 <h2>Patient Data</h2>
             </div>
@@ -85,6 +95,9 @@
                 </tbody>
               </table>
         </div>
+      </div>
+     
+       </div>
     </div>
 </div>
 
