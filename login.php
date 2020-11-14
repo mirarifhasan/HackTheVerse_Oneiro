@@ -76,11 +76,11 @@ if (isset($_POST["submit"])) {
             <fieldset>
               <div class="form-group">
                 <label for="disabledTextInput">Phone Number</label>
-                <input type="tel" name="phone" value="<?php echo $_SESSION['name']; ?>" id="disabledTextInput" class="form-control" placeholder="">
+                <input type="tel" name="phone" value="" id="disabledTextInput" class="form-control" placeholder="">
               </div>
               <div class="form-group">
                 <label for="disabledTextInput">Password</label>
-                <input type="password" name="password" value="<?php echo $_SESSION['password']; ?>" id="disabledTextInput" class="form-control" placeholder="">
+                <input type="password" name="password" value="" id="disabledTextInput" class="form-control" placeholder="">
               </div>
               <button type="submit" name="submit" class="btn btn-primary">Login</button>
               <p style="margin-top:10px"><a href="doctor-login">Login as Doctor</a></p>

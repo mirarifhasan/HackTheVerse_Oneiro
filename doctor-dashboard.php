@@ -30,6 +30,7 @@ if ( $_SESSION['doctor_id']!=0 || $_SESSION['doctor_name']=='') {
     <div class="menu-bar">
       <ul class="nav justify-content-end">
         <p style="padding-right: 20px; color:white"><?php echo $_SESSION['doctor_name'];?></p>
+        <li><a class="bg-warning" href="hotspot-zone"><b>Heat map</b></a></li>
         <li><a href="logout">Logout</a></li>
       </ul>
     </div>

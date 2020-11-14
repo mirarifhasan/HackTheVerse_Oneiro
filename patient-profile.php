@@ -4,7 +4,7 @@ include 'zzz-dbConnect.php';
 session_start();
 
 
-if (!isset($_SESSION['name'])) {
+if (!isset($_SESSION['name']) || $_SESSION['name']=='') {
   header('Location: login');
 }
 
@@ -14,6 +14,9 @@ if (isset($_POST["soscall"])) {
   $sql = "INSERT INTO sos (patient_id, task) VALUES ('" . $_SESSION['patient_id'] . "', 'Emergency SOS Call')";
 
   mysqli_query($link, $sql);
+  
+  $s = $_SESSION["name"];
+  header("Location: send-email?e=$s");
   echo "<script type='text/javascript'>alert('SOS send');</script>";
 }
 
