@@ -67,8 +67,16 @@ if (isset($_POST["signup"])) {
 <body>
 
   <div class="sign-up-form">
+  <div class="menu-bar">
+     <ul class="nav justify-content-end">
+       <li><a href="signup.php">Signup</a></li>
+       <li><a href="login.php">Login</a></li>
+     </ul>
+    </div>
     <div class="container">
-      <div class="form-title">
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+        <div class="form-title">
         <h2>Patient Information</h2>
       </div>
       <form method="POST">
@@ -123,6 +131,8 @@ if (isset($_POST["signup"])) {
 
         <button type="submit" name="signup" class="btn btn-primary">Sign up</button>
       </form>
+        </div>
+      </div>
     </div>
   </div>
 

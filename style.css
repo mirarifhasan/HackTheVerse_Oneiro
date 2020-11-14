@@ -27,9 +27,6 @@
 
 
 /* patient interphase */
-.patient-interphase{
-    padding: 20px 0px;
-}
 .emergency-call, .opload-voice-file, .regular-report h2{
     padding: 10px 0px;
 }
@@ -112,6 +109,7 @@ form select option:hover {
 .menu-bar{
     background-color: gray;
     padding: 25px 0px;
+    margin-bottom: 20px;
 }
 .menu-bar ul li a{
     text-decoration: none;

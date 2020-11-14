@@ -1,139 +1,78 @@
-<?php
-
-include 'zzz-dbConnect.php';
-session_start();
-
-$email = '';
-$error = '';
-
-if (isset($_POST["login"])) {
-
-	$email = trim($_POST["email"]);
-
-	$sql = "SELECT * FROM user WHERE Email=?;";
-	$stmt = mysqli_prepare($link, $sql);
-	mysqli_stmt_bind_param($stmt, "s", $email);
-	mysqli_stmt_execute($stmt);
-	$result = mysqli_stmt_get_result($stmt);
-	$noOfData = mysqli_num_rows($result);
-
-	// If email found
-	if ($noOfData == 1) {
-
-		// If password correct
-		$row = mysqli_fetch_assoc($result);
-		if ($row['Password'] == $_POST['password']) {
-			$_SESSION['UserID'] = $row['UserID'];
-			$_SESSION['Name'] = $row['Name'];
-			$_SESSION['Email'] = $row['Email'];
-			$_SESSION['UserType'] = $row['UserType'];
-			$_SESSION['Image'] = $row['Image'];
-			$_SESSION['Rating'] = $row['Rating'];
-			$_SESSION['Credit'] = $row['Credit'];
-
-			header('Location: index');
-		} else $error = "Wrong password";
-	} else $error = "Email not exist";
-}
-
-?>
-
-
-<!doctype html>
-<html class="no-js" lang="zxx">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>My Account | Bookshop Responsive Bootstrap4 Template</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup | Oneiro</title>
 
-	<!-- Favicons -->
-	<link rel="shortcut icon" href="images/favicon.ico">
-	<link rel="apple-touch-icon" href="images/icon.png">
+  <!-- CSS link -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-	<!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
-
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="style.css">
-
-	<!-- Cusom css -->
-	<link rel="stylesheet" href="css/custom.css">
-
-	<!-- Modernizer js -->
-	<script src="js/vendor/modernizr-3.5.0.min.js"></script>
 </head>
 
 <body>
-	<!--[if lte IE 9]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-	<![endif]-->
 
-	<!-- Main wrapper -->
-	<div class="wrapper" id="wrapper">
-
-		<!-- Start My Account Area -->
-		<section class="my_account_area pt--80 pb--55 bg--white">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-7 col-md-9 col-sm-9 col-11">
-						<div class="my__account__wrapper">
-							<h3 class="account__title">Login</h3>
-							<h4 class="account__title2">to continue in Boighor</h4>
-							<div class="row">
-								<div class="col-md-7">
-									<form method="POST">
-										<div class="account__form">
-											<div class="input__box">
-												<label>Email<span>*</span></label>
-												<input type="email" name="email" value="<?php echo $email ?>" required>
-											</div>
-											<div class="input__box">
-												<label>Password<span>*</span></label>
-												<input type="password" name="password" value="<?php echo $password ?>" required>
-											</div>
-											<p class="text-danger" style="font-size: 13px;"><?php echo $error ?></p>
-											<div style="display: flex">
-												<div>
-													<a class="forget_pass" href="#">Lost your password?</a>
-													<a class="forget_pass" href="signup">Create new account</a>
-												</div>
-												<div class="form__btn align-self-center" style="position:absolute; right:35px;">
-													<button type="submit" name="login">Log In</button>
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
-								<div class="col-md-5 align-self-center d-none d-sm-none d-md-block">
-									<img src="images/others/login.jpg" class="img-fluid" style="margin-left: -25px;" alt="picture">
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</section>
-		<!-- End My Account Area -->
+  <div class="sign-up-form">
+  <div class="menu-bar">
+     <ul class="nav justify-content-end">
+       <li><a href="signup.php">Signup</a></li>
+       <li><a href="login.php">Login</a></li>
+     </ul>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+        <div class="form-title">
+        <h2>Log In</h2>
+      </div>
+        <form>
+  <fieldset >
+    <div class="form-group">
+      <label for="disabledTextInput">Phone Number</label>
+      <input type="tel" id="disabledTextInput" class="form-control" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="disabledTextInput">Password</label>
+      <input type="text" id="disabledTextInput" class="form-control" placeholder="">
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </fieldset>
+</form>
+    
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-	</div>
-	<!-- //Main wrapper -->
 
-	<!-- JS Files -->
-	<script src="js/vendor/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/active.js"></script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- JS link -->
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 </body>
 
 </html>

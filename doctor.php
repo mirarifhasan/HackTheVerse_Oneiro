@@ -23,6 +23,43 @@
     </div>
     <div class="container">
        <div class="row">
+         <div class="col-md-12">
+         <div class="emergency-output">
+            <div class="emergency-output-title">
+                <h2>Patient Data</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Bed No.</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Details</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td><a href="#">Details</a></td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td><a href="#">Details</a></td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td><a href="#">Details</a></td>
+                  
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+         </div>
       <div class="col-md-6">
       <div class="emmergency-patient">
             <div class="em-pat-title">
