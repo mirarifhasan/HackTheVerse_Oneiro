@@ -3,6 +3,7 @@
 include 'zzz-dbConnect.php';
 session_start();
 
+$_SESSION['patient_id'] = '';
 $_SESSION["name"] = '';
 $_SESSION['age'] = '';
 $_SESSION["phone"] = '';
@@ -17,11 +18,10 @@ if (isset($_POST["submit"])) {
   $_SESSION['phone'] = trim($_POST["phone"]);
   $_SESSION['password'] = trim($_POST["password"]);
 
-  $sql = "select * from patient where phone='" . $_SESSION['phone'] . "' and password='".$_SESSION['password']."'";
+  $sql = "select * from patient where phone='" . $_SESSION['phone'] . "' and password='" . $_SESSION['password'] . "'";
 
   $result = mysqli_query($link, $sql);
   $noOfData = mysqli_num_rows($result);
-  $row = mysqli_fetch_assoc($result);
 
   if ($noOfData == 0) {
     $error = 'Wrong phone/password';
@@ -34,7 +34,7 @@ if (isset($_POST["submit"])) {
     $_SESSION['address'] = $row['address'];
     $_SESSION['city'] = $row['city'];
     $_SESSION['gender'] = $row['gender'];
-    header('Location: patient');
+    header('Location: patient-profile');
   }
 }
 ?>
@@ -77,11 +77,11 @@ if (isset($_POST["submit"])) {
             <fieldset>
               <div class="form-group">
                 <label for="disabledTextInput">Phone Number</label>
-                <input type="tel" name="phone" value="<?php echo $_SESSION['name'];?>" id="disabledTextInput" class="form-control" placeholder="">
+                <input type="tel" name="phone" value="<?php echo $_SESSION['name']; ?>" id="disabledTextInput" class="form-control" placeholder="">
               </div>
               <div class="form-group">
                 <label for="disabledTextInput">Password</label>
-                <input type="text" name="password" value="<?php echo $_SESSION['password'];?>" id="disabledTextInput" class="form-control" placeholder="">
+                <input type="text" name="password" value="<?php echo $_SESSION['password']; ?>" id="disabledTextInput" class="form-control" placeholder="">
               </div>
               <button type="submit" name="submit" class="btn btn-primary">Login</button>
             </fieldset>

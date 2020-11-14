@@ -1,3 +1,14 @@
+<?php
+
+include 'zzz-dbConnect.php';
+session_start();
+
+// echo $_SESSION['patient_id'];
+// die();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,16 +28,24 @@
 
   <div class="patient-interphase">
     <div class="menu-bar">
-     <ul class="nav justify-content-end">
-       <li><a href="signup.php">Signup</a></li>
-       <li><a href="login.php">Login</a></li>
-     </ul>
+      <ul class="nav justify-content-end">
+        
+        <?php
+        if ($_SESSION['patient_id'] == '') {
+        ?>
+          <li><a href="login">Login</a></li>
+          <li><a href="signup.php">Signup</a></li>
+        <?php } else{
+          echo '<p style="color:white; padding-right:30px;">'.$_SESSION["name"].'</p>';
+          echo '<li><a href="logout">Logout</a></li>';
+        }  ?>
+      </ul>
     </div>
     <div class="container">
       <div class="row">
         <div class="col-md-8">
           <div class="emergency-call">
-            <h2>Emergency Call <i class="fas fa-bell"></i></h2>
+            <h2>Emergency SOS Call <i class="fas fa-bell"></i></h2>
             <form action="">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -43,15 +62,19 @@
               <button type="submit" class="btn btn-primary">Send</button>
             </form>
           </div>
+
           <div class="line"></div>
+
           <div class="opload-voice-file">
-            <h2>Send voice for covid test</h2>
-            <form action="">
-              <input type="file" id="myFile" name="filename"> <br><br>
-              <button type="submit" class="btn btn-primary">Upload</button>
+            <h2>Send voice clip for COVID test</h2>
+            <form action="file-upload" method="POST" enctype="multipart/form-data">
+              <input type="file" id="myFile" name="file"> <br><br>
+              <button type="submit" name="submit" class="btn btn-primary">Upload</button>
             </form>
           </div>
+
           <div class="line"></div>
+
           <div class="regular-report">
             <h2>Report</h2>
             <table class="table table-striped">

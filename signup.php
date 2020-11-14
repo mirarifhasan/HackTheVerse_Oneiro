@@ -39,7 +39,7 @@ if (isset($_POST["signup"])) {
     $row = mysqli_fetch_assoc($result);
 
     $_SESSION['patient_id'] = $row['patient_id'];
-    header('Location: patient');
+    header('Location: patient-profile');
   } else {
     $error = 'Password not match.';
     echo "<script type='text/javascript'>alert('$error');</script>";

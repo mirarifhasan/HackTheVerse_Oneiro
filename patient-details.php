@@ -19,7 +19,7 @@ if (isset($_GET['pid'])) {
 echo date("Y-m-d h:i:sa");
 
 
-die()
+// die()
 ?>
 
 <!DOCTYPE html>
@@ -40,11 +40,11 @@ die()
 <body>
 
   <div class="patient-interphase">
-  <div class="menu-bar">
-     <ul class="nav justify-content-end">
-       <li><a href="signup.php">Signup</a></li>
-       <li><a href="login.php">Login</a></li>
-     </ul>
+    <div class="menu-bar">
+      <ul class="nav justify-content-end">
+        <li><a href="signup.php">Signup</a></li>
+        <li><a href="login.php">Login</a></li>
+      </ul>
     </div>
     <div class="container">
       <div class="row">
