@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2020 at 11:26 AM
+-- Generation Time: Nov 14, 2020 at 02:28 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -30,16 +30,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `audio` (
   `audio_id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `path` varchar(100) NOT NULL
+  `path` varchar(100) NOT NULL,
+  `iscovid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `audio`
 --
 
-INSERT INTO `audio` (`audio_id`, `patient_id`, `path`) VALUES
-(1, 0, 'uploads/5fafad2e0ad801.92064750.mp3'),
-(2, 0, 'uploads/5fafad36a92139.62642733.mp3');
+INSERT INTO `audio` (`audio_id`, `patient_id`, `path`, `iscovid`) VALUES
+(1, 1, 'uploads/5fafad2e0ad801.92064750.mp3', 0),
+(2, 1, 'uploads/5fafad36a92139.62642733.mp3', 0),
+(3, 1, 'uploads/5fafb112921585.13095864.mp3', 1);
 
 -- --------------------------------------------------------
 
@@ -63,6 +65,28 @@ INSERT INTO `bp` (`bp_id`, `patient_id`, `datetime`, `high`, `low`) VALUES
 (1, 1, '2020-11-12 12:58:41pm', 120, 80),
 (2, 1, '2020-11-13 12:58:41pm', 140, 100),
 (3, 1, '2020-11-14 12:58:41pm', 160, 120);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat`
+--
+
+CREATE TABLE `chat` (
+  `chat_id` int(11) NOT NULL,
+  `sender` int(11) NOT NULL,
+  `receiver` int(11) NOT NULL,
+  `text` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`chat_id`, `sender`, `receiver`, `text`) VALUES
+(1, 1, 0, 'Hello Doctor. I am filling unwell.'),
+(2, 0, 1, 'Can you explain a bit more, please.'),
+(3, 0, 1, 'I am sending a nurse right now');
 
 -- --------------------------------------------------------
 
@@ -131,6 +155,13 @@ CREATE TABLE `sos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `sos`
+--
+
+INSERT INTO `sos` (`sos_id`, `patient_id`, `task`) VALUES
+(1, 1, 'Emergency SOS Call');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -145,6 +176,12 @@ ALTER TABLE `audio`
 --
 ALTER TABLE `bp`
   ADD PRIMARY KEY (`bp_id`);
+
+--
+-- Indexes for table `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`chat_id`);
 
 --
 -- Indexes for table `heartrate`
@@ -178,13 +215,19 @@ ALTER TABLE `sos`
 -- AUTO_INCREMENT for table `audio`
 --
 ALTER TABLE `audio`
-  MODIFY `audio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `audio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `bp`
 --
 ALTER TABLE `bp`
   MODIFY `bp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `heartrate`
@@ -208,7 +251,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `sos`
 --
 ALTER TABLE `sos`
-  MODIFY `sos_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
