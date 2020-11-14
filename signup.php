@@ -1,3 +1,54 @@
+<?php
+
+include 'zzz-dbConnect.php';
+session_start();
+
+$_SESSION["name"] = '';
+$_SESSION['age'] = '';
+$_SESSION["phone"] = '';
+$_SESSION['address'] = '';
+$_SESSION['city'] = '';
+$_SESSION["gender"] = '';
+$_SESSION["password"] = '';
+$_SESSION["c_password"] = '';
+$error = '';
+
+if (isset($_POST["signup"])) {
+  $_SESSION['name'] = trim($_POST["name"]);
+  $_SESSION['age'] = trim($_POST["age"]);
+  $_SESSION['phone'] = trim($_POST["phone"]);
+  $_SESSION['address'] = trim($_POST["address"]);
+  $_SESSION['city'] = trim($_POST["city"]);
+  $_SESSION['gender'] = trim($_POST["gender"]);
+  $_SESSION['password'] = trim($_POST["password"]);
+  $_SESSION['c_password'] = trim($_POST["c_password"]);
+
+  $sql = "select * from patient where phone='" . $_SESSION['phone'] . "'";
+  $result = mysqli_query($link, $sql);
+  $noOfData = mysqli_num_rows($result);
+
+  if ($noOfData > 0) {
+    $error = 'This phone number already exist';
+    echo "<script type='text/javascript'>alert('$error');</script>";
+  } elseif ($error == '' && ($_SESSION['password'] == $_SESSION['c_password'])) {
+    $sql = "INSERT INTO patient (name, gender, age, phone, address, city, password) VALUES ('" . $_SESSION['name'] . "', '" . $_SESSION['gender'] . "', '" . $_SESSION['age'] . "', '" . $_SESSION['phone'] . "', '" . $_SESSION['address'] . "', '" . $_SESSION['city'] . "', '" . $_SESSION['password'] . "')";
+    mysqli_query($link, $sql);
+
+    $sql = "select * from patient where phone='" . $_SESSION['phone'] . "'";
+    $result = mysqli_query($link, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    $_SESSION['patient_id'] = $row['patient_id'];
+    header('Location: patient');
+  } else {
+    $error = 'Password not match.';
+    echo "<script type='text/javascript'>alert('$error');</script>";
+  }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,22 +71,22 @@
       <div class="form-title">
         <h2>Patient Information</h2>
       </div>
-      <form>
+      <form method="POST">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputname4">Name</label>
-            <input type="text" class="form-control" id="inputname4" required>
+            <input type="text" name="name" value="<?php echo $_SESSION['name']; ?>" class="form-control" id="inputname4" required>
           </div>
           <div class="form-group col-md-6">
             <label for="inputnumber4">Age</label>
-            <input type="number" class="form-control" id="inputnumber4" required>
+            <input type="number" name="age" value="<?php echo $_SESSION['age']; ?>" class="form-control" id="inputnumber4" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputCity" style="margin-right: 20px;">Genger</label>
-            <select name="dept" style="width: 100%;">
+            <select name="gender" style="width: 100%;" required>
               <option value="" disabled selected>Select Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
@@ -44,22 +95,33 @@
           </div>
           <div class="form-group col-md-6">
             <label for="inputphone">Phone Number</label>
-            <input type="tel" class="form-control" id="inputphone" required>
+            <input type="tel" name="phone" value="<?php echo $_SESSION['phone']; ?>" class="form-control" id="inputphone" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="" required>
+            <input type="text" name="address" value="<?php echo $_SESSION['address']; ?>" class="form-control" id="inputAddress" placeholder="" required>
           </div>
           <div class="form-group col-md-6">
             <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity" required>
+            <input type="text" name="city" value="<?php echo $_SESSION['city']; ?>" class="form-control" id="inputCity" required>
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign up</button>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputAddress">Password</label>
+            <input type="text" name="password" value="<?php echo $_SESSION['password']; ?>" class="form-control" id="inputAddress" placeholder="" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputCity">Confirm Password</label>
+            <input type="text" name="c_password" value="<?php echo $_SESSION['c_password']; ?>" class="form-control" id="inputCity" required>
+          </div>
+        </div>
+
+        <button type="submit" name="signup" class="btn btn-primary">Sign up</button>
       </form>
     </div>
   </div>
