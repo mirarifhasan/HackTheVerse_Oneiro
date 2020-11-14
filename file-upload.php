@@ -3,8 +3,6 @@
 include 'zzz-dbConnect.php';
 session_start();
 
-
-
 if(isset($_POST['submit'])){
     $file = $_FILES['file'];
     print_r($file);
