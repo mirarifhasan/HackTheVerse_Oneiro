@@ -3,8 +3,23 @@
 include 'zzz-dbConnect.php';
 session_start();
 
-// echo $_SESSION['patient_id'];
-// die();
+
+if (!isset($_SESSION['name'])) {
+  header('Location: login');
+}
+
+
+if (isset($_POST["soscall"])) {
+
+  $sql = "INSERT INTO sos (patient_id, task) VALUES ('" . $_SESSION['patient_id'] . "', 'Emergency SOS Call')";
+
+  mysqli_query($link, $sql);
+  echo "<script type='text/javascript'>alert('SOS send');</script>";
+}
+
+
+
+
 ?>
 
 
@@ -29,14 +44,14 @@ session_start();
   <div class="patient-interphase">
     <div class="menu-bar">
       <ul class="nav justify-content-end">
-        
+
         <?php
         if ($_SESSION['patient_id'] == '') {
         ?>
           <li><a href="login">Login</a></li>
           <li><a href="signup.php">Signup</a></li>
-        <?php } else{
-          echo '<p style="color:white; padding-right:30px;">'.$_SESSION["name"].'</p>';
+        <?php } else {
+          echo '<p style="color:white; padding-right:30px;">' . $_SESSION["name"] . '</p>';
           echo '<li><a href="logout">Logout</a></li>';
         }  ?>
       </ul>
@@ -46,7 +61,7 @@ session_start();
         <div class="col-md-8">
           <div class="emergency-call">
             <h2>Emergency SOS Call <i class="fas fa-bell"></i></h2>
-            <form action="">
+            <form method="POST">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                 <label class="form-check-label" for="defaultCheck1">
@@ -59,7 +74,7 @@ session_start();
                   Dyspnoea
                 </label>
               </div>
-              <button type="submit" class="btn btn-primary">Send</button>
+              <button type="submit" name="soscall" class="btn btn-primary">Send</button>
             </form>
           </div>
 
@@ -73,38 +88,59 @@ session_start();
             </form>
           </div>
 
+          <?php
+          $sql = 'SELECT * FROM audio WHERE patient_id = ' . $_SESSION['patient_id'] . ' ORDER BY audio_id DESC LIMIT 1';
+          $res1 = mysqli_query($link, $sql);
+          $noOfData = mysqli_num_rows($res1);
+          if ($noOfData > 0) {
+          ?>
+            <h4 style="color:blue; margin-top:20px">
+              Latest COVID caugh report in
+              <?php
+              $row1 = mysqli_fetch_assoc($res1);
+              if ($row1['iscovid'] == 1) {
+                echo 'POSITIVE';
+              } else echo 'NEGATIVE';
+              ?>
+            </h4>
+          <?php
+          }
+          ?>
+
+          <h4 style="padding-top: 15px;">Previous audios</h4>
+
+          <?php
+          $sql = 'select * from audio where patient_id=' . $_SESSION['patient_id'];
+          $res1 = mysqli_query($link, $sql);
+          while ($row1 = mysqli_fetch_assoc($res1)) { ?>
+            <audio src="<?php echo $row1['path'] ?>" controls>
+              Your browser does not support the audio element.
+            </audio>
+          <?php } ?>
+
           <div class="line"></div>
 
           <div class="regular-report">
-            <h2>Report</h2>
+            <h2>Report [BP]</h2>
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">test name</th>
-                  <th scope="col">value</th>
-
+                  <th scope="col">Date Time</th>
+                  <th scope="col">High</th>
+                  <th scope="col">Low</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>11</td>
-
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>11</td>
-
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>11</td>
-
-                </tr>
+                <?php
+                $sql = 'select * from bp where patient_id=' . $_SESSION['patient_id'];
+                $res1 = mysqli_query($link, $sql);
+                while ($row1 = mysqli_fetch_assoc($res1)) { ?>
+                  <tr>
+                    <th scope="row"><?php echo $row1['datetime'] ?></th>
+                    <td><?php echo $row1['high'] ?></td>
+                    <td><?php echo $row1['low'] ?></td>
+                  </tr>
+                <?php } ?>
               </tbody>
             </table>
           </div>

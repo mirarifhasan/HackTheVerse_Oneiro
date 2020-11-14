@@ -3,14 +3,14 @@
 include 'zzz-dbConnect.php';
 session_start();
 
-$_SESSION["name"] = '';
-$_SESSION['age'] = '';
-$_SESSION["phone"] = '';
-$_SESSION['address'] = '';
-$_SESSION['city'] = '';
-$_SESSION["gender"] = '';
-$_SESSION["password"] = '';
-$_SESSION["c_password"] = '';
+// $_SESSION["name"] = '';
+// $_SESSION['age'] = '';
+// $_SESSION["phone"] = '';
+// $_SESSION['address'] = '';
+// $_SESSION['city'] = '';
+// $_SESSION["gender"] = '';
+// $_SESSION["password"] = '';
+// $_SESSION["c_password"] = '';
 $error = '';
 
 if (isset($_POST["signup"])) {

@@ -24,11 +24,12 @@ if(isset($_POST['submit'])){
                $fileDestination = 'uploads/'.$fileNameNew;
                move_uploaded_file($fileTmpName, $fileDestination );
 
-               $sql = "INSERT INTO audio (patient_id, path) VALUES ('" . $_SESSION['patient_id'] . "', '" . $fileDestination . "')";
+               $sql = "INSERT INTO audio (patient_id, path, iscovid) VALUES ('" . $_SESSION['patient_id'] . "', '" . $fileDestination . "', '1')";
                mysqli_query($link, $sql);
-               echo "<script type='text/javascript'>alert('Uploaded');</script>";
+               
 
                header("Location: patient-profile");
+               echo "<script type='text/javascript'>alert('Uploaded');</script>";
         }else{
             echo "There is an error uploading your file!";
         }

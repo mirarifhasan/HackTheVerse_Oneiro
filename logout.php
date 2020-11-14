@@ -13,5 +13,5 @@ $_SESSION["gender"] = '';
 $_SESSION["password"] = '';
 $_SESSION["c_password"] = '';
 $error = '';
-
+header('Location: login');
 ?>
