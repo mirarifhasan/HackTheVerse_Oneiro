@@ -18,6 +18,15 @@ if (isset($_POST["soscall"])) {
 }
 
 
+if (isset($_POST["submit"])) {
+  if (trim($_POST["text"]) != '') {
+
+    $sql = "INSERT INTO chat (sender, receiver, text) VALUES ('" . $_SESSION["pid"] . "', '0', '" . trim($_POST["text"]) . "')";
+  
+    mysqli_query($link, $sql);
+    header("Refresh:0");
+  }
+}
 
 
 ?>
@@ -152,33 +161,37 @@ if (isset($_POST["soscall"])) {
             <div class="chat-text">
               <h3>Chat Box</h3>
             </div>
-            <div class="container-field">
-              <h5>Doctor</h5>
-              <p>Hello. How are you today?</p>
 
-            </div>
 
-            <div class="container-field darker">
-              <h5>Patient</h5>
-              <p>Hey! I'm fine. Thanks for asking!</p>
 
-            </div>
+            <?php
+            $sql = 'SELECT * FROM chat WHERE sender=' . $_SESSION['pid'] . ' or receiver=' . $_SESSION['pid'];
 
-            <div class="container-field">
-              <h5>Doctor</h5>
-              <p>Sweet! So, what do you wanna do today?</p>
+            $res1 = mysqli_query($link, $sql);
+            while ($row1 = mysqli_fetch_assoc($res1)) {
+              if ($row1['sender'] == 0) {
+            ?>
+                <div class="container-field">
+                  <h5>Doctor</h5>
+                  <p><?php echo $row1['text'] ?></p>
+                </div>
+              <?php
+              } else {
+              ?>
+                <div class="container-field darker">
+                  <h5>Patient</h5>
+                  <p><?php echo $row1['text'] ?></p>
+                </div>
+              <?php
+              }
+              ?>
+            <?php } ?>
 
-            </div>
 
-            <div class="container-field darker">
-              <h5>Patient</h5>
-              <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-
-            </div>
             <div class="msg-send-field">
-              <form action="">
-                <textarea name="" id="" rows="3"></textarea>
-                <button type="submit" class="btn btn-primary">Post</button>
+              <form method="POST">
+                <textarea name="text" id="" rows="3"></textarea>
+                <button type="submit" name="submit" class="btn btn-primary">Post</button>
               </form>
             </div>
           </div>

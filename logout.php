@@ -4,6 +4,8 @@ include 'zzz-dbConnect.php';
 session_start();
 
 $_SESSION['patient_id'] = '';
+$_SESSION['doctor_id'] = '';
+$_SESSION['doctor_name'] = '';
 $_SESSION["name"] = '';
 $_SESSION['age'] = '';
 $_SESSION["phone"] = '';

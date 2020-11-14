@@ -3,11 +3,9 @@
 include 'zzz-dbConnect.php';
 session_start();
 
-if (!isset($_SESSION['doctor_id'])) {
+if ( $_SESSION['doctor_id']!=0 || $_SESSION['doctor_name']=='') {
   header('Location: doctor-login');
 }
-
-
 ?>
 
 
