@@ -168,7 +168,7 @@ if (isset($_POST["submit"])) {
 
 
             <?php
-            $sql = 'SELECT * FROM chat WHERE sender=' . $_SESSION['pid'] . ' or receiver=' . $_SESSION['pid'];
+            $sql = 'SELECT * FROM chat WHERE sender=' . $_SESSION['patient_id'] . ' or receiver=' . $_SESSION['patient_id'];
 
             $res1 = mysqli_query($link, $sql);
             while ($row1 = mysqli_fetch_assoc($res1)) {
