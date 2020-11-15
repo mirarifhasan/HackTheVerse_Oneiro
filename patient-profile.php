@@ -24,8 +24,9 @@ if (isset($_POST["soscall"])) {
 if (isset($_POST["submit"])) {
   if (trim($_POST["text"]) != '') {
 
-    $sql = "INSERT INTO chat (sender, receiver, text) VALUES ('" . $_SESSION["pid"] . "', '0', '" . trim($_POST["text"]) . "')";
-  
+    $sql = "INSERT INTO chat (sender, receiver, text) VALUES ('" . $_SESSION["patient_id"] . "', '0', '" . trim($_POST["text"]) . "')";
+  echo $sql;
+  die();
     mysqli_query($link, $sql);
     header("Refresh:0");
   }
